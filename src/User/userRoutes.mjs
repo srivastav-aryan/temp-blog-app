@@ -22,9 +22,8 @@ passport.use(
       callbackURL: appConfig.google.callbackURL,
     },
     (accessToken, refreshToken, profile, done) => {
-      // Add detailed logging
-      console.log("Google OAuth callback received");
-      console.log("Profile:", JSON.stringify(profile, null, 2));
+      // Simple success logging without detail
+      console.log("Google OAuth authentication successful");
 
       // Pass the profile to the callback
       return done(null, profile);

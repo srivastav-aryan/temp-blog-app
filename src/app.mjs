@@ -21,11 +21,13 @@ const __dirname = path.dirname(__filename);
 // Initialize Express app
 const app = express();
 
-// Debug OAuth configuration
-console.log("OAuth Configuration:");
-console.log("Client ID exists:", Boolean(appConfig.google.clientId));
-console.log("Client Secret exists:", Boolean(appConfig.google.clientSecret));
-console.log("Callback URL:", appConfig.google.callbackURL);
+// Debug OAuth configuration only in development
+if (appConfig.nodeEnv === "development") {
+  console.log("OAuth Configuration:");
+  console.log("Client ID exists:", Boolean(appConfig.google.clientId));
+  console.log("Client Secret exists:", Boolean(appConfig.google.clientSecret));
+  console.log("Callback URL:", appConfig.google.callbackURL);
+}
 
 // Middleware setup
 app.use(express.json());
