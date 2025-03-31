@@ -1,0 +1,72 @@
+<div class="row">
+   <div class="col-md-12 mb-4">
+      <div class="jumbotron p-4 bg-light rounded">
+         <h1 class="display-4">Welcome to Pro Blog</h1>
+         <p class="lead">Share your thoughts and experiences with the world</p>
+         <% if (!user) { %>
+         <div class="mt-4">
+            <a href="/register" class="btn btn-primary me-2">Sign Up</a>
+            <a href="/login" class="btn btn-outline-primary">Log In</a>
+         </div>
+         <% } else { %>
+         <div class="mt-4">
+            <a href="/create-post" class="btn btn-primary">Create a New Post</a>
+         </div>
+         <% } %>
+      </div>
+   </div>
+</div>
+
+<div class="row">
+   <% if (blogs && blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+   <div class="col-md-4 mb-4">
+      <div class="card h-100">
+         <% if (blog.imageUrl) { %>
+         <img
+            src="<%= blog.imageUrl %>"
+            class="card-img-top"
+            alt="<%= blog.title %>"
+            style="height: 200px; object-fit: cover"
+         />
+         <% } else { %>
+         <div
+            class="card-img-top bg-light d-flex align-items-center justify-content-center"
+            style="height: 200px"
+         >
+            <span class="text-muted">No image</span>
+         </div>
+         <% } %>
+         <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <p class="card-text">
+               <%= blog.getSummary ? blog.getSummary(150) :
+               blog.content.substring(0, 150) %>...
+            </p>
+         </div>
+         <div
+            class="card-footer bg-white d-flex justify-content-between align-items-center"
+         >
+            <small class="text-muted">
+               By <%= blog.author ? (blog.author.displayName ||
+               blog.author.username) : 'Unknown' %> | <%= new
+               Date(blog.createdAt).toLocaleDateString() %>
+            </small>
+            <a
+               href="/post/<%= blog._id %>"
+               class="btn btn-sm btn-outline-primary"
+               >Read More</a
+            >
+         </div>
+      </div>
+   </div>
+   <% }); %> <% } else { %>
+   <div class="col-12 text-center py-5">
+      <h3 class="text-muted">No posts yet</h3>
+      <% if (user) { %>
+      <a href="/create-post" class="btn btn-primary mt-3"
+         >Create the first post</a
+      >
+      <% } %>
+   </div>
+   <% } %>
+</div>
