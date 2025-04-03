@@ -13,11 +13,11 @@ const overAllConfig = {
     usersCollection: process.env.APPWRITE_COLLECTION_USERS,
     postsCollection: process.env.APPWRITE_COLLECTION_POSTS,
   },
-  google: {
-    clientId: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK_URL,
-  },
+  // google: {
+  //   clientId: process.env.GOOGLE_CLIENT_ID,
+  //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  //   callbackURL: process.env.GOOGLE_CALLBACK_URL,
+  // },
   sessionSignatureKey: process.env.SESSION_SECRET_FOR_SIGN,
 };
 
