@@ -7,7 +7,7 @@ import {
   getCurrentUser,
   updateUserProfile,
   logoutUser,
-  googleAuthCallback,
+ 
 } from "./userController.mjs";
  
 
@@ -15,7 +15,7 @@ const router = express.Router();
 
  
 
-// Serialize and deserialize user (required for Passport)
+ 
 passport.serializeUser((user, done) => {
   done(null, user);
 });
