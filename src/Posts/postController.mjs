@@ -40,22 +40,7 @@ export const createPost = async (req, res, next) => {
       });
 
       // Try to create post in Appwrite
-      try {
-         const appwritePost = await appwriteService.createPost(
-            title,
-            content,
-            appwriteImageId,
-            userId.toString()
-         );
-
-         // Update the MongoDB post with Appwrite ID
-         await Post.findByIdAndUpdate(post._id, {
-            appwriteUserId: appwritePost.$id,
-         });
-      } catch (appwriteError) {
-         console.error("Appwrite post creation failed:", appwriteError);
-         // Continue with local post creation
-      }
+     
 
       res.status(201).json({
          message: "Post created successfully",

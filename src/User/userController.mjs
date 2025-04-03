@@ -1,11 +1,7 @@
 import User from "./userModel.mjs";
-import appwriteService from "../config/appwriteConfig.mjs";
-import jwt from "jsonwebtoken";
-import appConfig from "../config/appConfig.mjs";
+ 
 
-/**
- * Register a new user
- */
+ 
 export const registerUser = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
