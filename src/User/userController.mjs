@@ -29,13 +29,8 @@ export const registerUser = async (req, res, next) => {
       displayName: username,
     });
 
-    // Create user in Appwrite
-    try {
-      await appwriteService.createUser(email, password, username);
-    } catch (appwriteError) {
-      console.error("Appwrite user creation failed:", appwriteError);
-      // Continue with local user creation, we'll sync later if needed
-    }
+     
+    
 
     // Store user in session
     req.session.user = {
@@ -87,13 +82,7 @@ export const loginUser = async (req, res, next) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    // Try to login with Appwrite
-    try {
-      await appwriteService.loginUser(email, password);
-    } catch (appwriteError) {
-      console.error("Appwrite login failed:", appwriteError);
-      // Continue with local login since we have our own session management
-    }
+     
 
     // Store user in session
     req.session.user = {
@@ -195,15 +184,7 @@ export const updateUserProfile = async (req, res, next) => {
  */
 export const logoutUser = async (req, res, next) => {
   try {
-    // Try to logout from Appwrite
-    try {
-      await appwriteService.logoutUser();
-    } catch (appwriteError) {
-      console.error("Appwrite logout failed:", appwriteError);
-      // Continue with local logout
-    }
-
-    // Destroy session
+    
     req.session.destroy((err) => {
       if (err) {
         return next(err);
@@ -216,13 +197,10 @@ export const logoutUser = async (req, res, next) => {
   }
 };
 
-/**
- * Google OAuth callback handler
- */
+
 export const googleAuthCallback = async (req, res, next) => {
   try {
-    // This function will be called after successful Google authentication
-    // The user data will be available in req.user (from Passport.js)
+  
     console.log("Google Auth Callback Handler");
     console.log(
       "User from Passport:",
